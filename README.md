@@ -1,1 +1,1 @@
-# google_earth_engine
+Repository containing scripts to run different tasks in Google Earth Engine.
