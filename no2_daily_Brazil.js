@@ -4,7 +4,7 @@
 // @Script name: no2_daily_Brazil
 // @Description: Script to download daily ERA5-Land data for Brazilian municipalities.
 // @Last modified by: Raquel Carmo
-// @Last modified date: 24 Feb. 2022
+// @Last modified date: 25 Feb. 2022
 
 var startDate = ee.Date('2020-01-01');
 var endDate = ee.Date('2021-07-06');
@@ -98,8 +98,9 @@ function featurize(feature, image) {
                       'dewpoint_temperature_2m', 'surface_pressure', 'u_component_of_wind_10m', 
                       'v_component_of_wind_10m', 'total_precipitation'];
 
-    for(var property in properties) {
-        dict[property] = ee.List([feature.get(property), -999]).reduce(ee.Reducer.firstNonNull());
+    for(var i in properties) {
+        var name = properties[i];
+        dict[name] = ee.List([feature.get(name), -999]).reduce(ee.Reducer.firstNonNull());
     }
     return ee.Feature(null, dict);
 }
